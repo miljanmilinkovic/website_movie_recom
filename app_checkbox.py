@@ -19,8 +19,6 @@ if 'links_to_present' not in st.session_state:
     st.session_state.links_to_present = []
 if 'promt' not in st.session_state:
     st.session_state.prompt = ''
-if 'delete' not in st.session_state:
-    st.session_state.delete = [False, False, False, False]
 
 #st.session_state.agree[0] = st.checkbox('add to favorites', key='agree0')
 
@@ -45,7 +43,16 @@ with st.sidebar:
         st.session_state.predict_movies = True
         st.session_state.show_movies = True
 
-
+    # if st.session_state.show_movies == True:
+    #     # Create two columns
+    #     col1, col2 = st.columns([0.8,0.25])
+    #     # Add widgets to each column
+    #     with col1:
+    #         for j in range(len(st.session_state.list_of_favorites)):
+    #             st.write(st.session_state.list_of_favorites[j])
+    #     with col2:
+    #         if  st.button("Remove"):
+    #             st.session_state.list_of_favorites = []
 
 
 number_of_recommendations = 15
@@ -96,44 +103,42 @@ if st.session_state.predict_movies:
             #st.write(api_return_movie_list[index])
 
 
+
+#st.write(st.session_state.titles_to_present)
+#st.write(st.session_state.links_to_present)
+#st.session_state.list_of_favorites = []
 if st.session_state.show_movies:
     for n in range(len(st.session_state.titles_to_present)):
         st_player(st.session_state.links_to_present[n], key=f'player{n}')
-        #Create two columns
-        col1, col2 = st.columns([0.25,0.5])
-        #Add widgets to each column
-        with col1:
-            st.session_state.agree[n] = st.button('add to favorites', key= f'agree{n}')
-        with col2:
-            st.session_state.delete[n] = st.button("remove from favorites", key=f'delete{n}')
-        st.write('')
+        st.session_state.agree[n] = st.checkbox('add to favorites', value = False, key= f'agree{n}')
         st.write('')
 
 
         if st.session_state.agree[n]:
             if st.session_state.titles_to_present[n] not in st.session_state.list_of_favorites:
                 st.session_state.list_of_favorites.append(st.session_state.titles_to_present[n])
-        if st.session_state.delete[n]:
+        else:
             if st.session_state.titles_to_present[n] in st.session_state.list_of_favorites:
                 st.session_state.list_of_favorites.remove(st.session_state.titles_to_present[n])
 
 with st.sidebar:
+    # if st.session_state.show_movies == True:
+        # Create two columns
+        # col1, col2 = st.columns([0.8,0.25])
+        # # Add widgets to each column
+        # with col1:
+        #     for j in range(len(st.session_state.list_of_favorites)):
+        #         st.write(st.session_state.list_of_favorites[j])
+        # with col2:
+        #     if len(st.session_state.list_of_favorites) > 0:
+        #         if  st.button("Remove"):
+        #             st.session_state.list_of_favorites = []
+        #             st.session_state.agree[0] = False
 
     if len(st.session_state.list_of_favorites) > 0:
         st.write('')
         st.write('')
         st.markdown("⭐ **Favorites:**")
-        #Create two columns
-        #col1, col2 = st.columns([0.8,0.25])
-        # Add widgets to each column
-        # with col1:
-        #     for j in range(len(st.session_state.list_of_favorites)):
-        #         st.write(st.session_state.list_of_favorites[j])
-        # with col2:
-        #     for j in range(len(st.session_state.list_of_favorites)):
-        #         st.session_state.delete[j] = st.button("Remove", key=f'delete{j}')
-        #         if st.session_state.delete[j]:
-        #             st.session_state.list_of_favorites.remove(st.session_state.list_of_favorites[j])
         for j in range(len(st.session_state.list_of_favorites)):
             st.write('  ',st.session_state.list_of_favorites[j])
         # if st.button('refine search'):

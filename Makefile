@@ -21,6 +21,9 @@ install_requirements:
 #         HEROKU COMMANDS
 # ----------------------------------
 
+test_stream:
+	-@streamlit run test.py
+
 streamlit:
 	-@streamlit run app.py
 
