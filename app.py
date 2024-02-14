@@ -65,12 +65,13 @@ with st.sidebar:
         st.session_state.show_movies = True
 
 
-
+# create string with fav movies
+string_fav_movies = '_'.join(st.session_state.list_of_favorites)
 
 number_of_recommendations = 20
 user_input = {'prompt': st.session_state.prompt,
-              'n_recom': number_of_recommendations,
-              'fav_list': st.session_state.list_of_favorites}
+              'fav_list': string_fav_movies,
+              'weight_n': 0.5}
 
 #url = 'https://firstworkingimage-qgokkfvvpq-ew.a.run.app/predict'
 url ='http://127.0.0.1:8000/predict'
