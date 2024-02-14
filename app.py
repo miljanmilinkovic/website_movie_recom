@@ -6,7 +6,7 @@ from streamlit_player import st_player
 # for google search:
 from googleapiclient.discovery import build
 from params import *
-import time
+
 
 st.set_page_config(page_title=None, page_icon=None, layout="centered", initial_sidebar_state="expanded", menu_items=None)
 
@@ -72,7 +72,7 @@ with st.sidebar:
         st.session_state.show_movies = True
     st.write('')
 
-    st.session_state.weight_n = st.slider('    Text similarity vs.  Your taste', 0, 100, 50) / 100
+    st.session_state.weight_n = st.slider('Text similarity vs. Your taste', 0, 100, 50) / 100
     #st.write(st.session_state.weight_n)
 
 # create string with fav movies
