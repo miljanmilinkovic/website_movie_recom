@@ -72,7 +72,7 @@ with st.sidebar:
         st.session_state.show_movies = True
     st.write('')
 
-    st.session_state.weight_n = st.slider('Text similarity vs. Your taste', 0, 100, 50) / 100
+    st.session_state.weight_n = st.slider('Adjust the importance of ratings', 0, 100, 50) / 100
     #st.write(st.session_state.weight_n)
 
 # create string with fav movies
@@ -106,7 +106,7 @@ if st.session_state.update_movies:
     st.session_state.links_to_present = []
     i = 0
     for index, title in enumerate(st.session_state.api_return_movie_list):
-        if len(st.session_state.titles_to_present) < 5 and title not in st.session_state.already_presented_list:
+        if len(st.session_state.titles_to_present) < 5 and title not in st.session_state.already_presented_list and 'youtube.com/watch' in get_link(title):
             st.session_state.titles_to_present.append(title)
             st.session_state.links_to_present.append(get_link(title))
 
