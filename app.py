@@ -61,7 +61,7 @@ def get_link(titel:str):
 
 with st.sidebar:
     # To Do implement max length of 500 characters input
-    st.session_state.prompt = st.text_area('Summarise the movie:', 'man in midlife crisis searches for meaning in life', height=170, max_chars=1000)
+    st.session_state.prompt = st.text_area('Summarise the movie:', 'Drug addict trying to get his life back', height=170, max_chars=1000)
     if st.button('generate recommendations'):
         if st.session_state.old_list_of_favorites != st.session_state.list_of_favorites or st.session_state.prompt != st.session_state.old_prompt or st.session_state.weight_n != st.session_state.old_weight_n:
             st.session_state.old_list_of_favorites = st.session_state.list_of_favorites
